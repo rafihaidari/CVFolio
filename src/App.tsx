@@ -1,4 +1,5 @@
 import BackgroundFX from './components/BackgroundFX'
+import CodeOverlay from './components/CodeOverlay'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
 import ExperienceSection from './components/sections/Experience'
@@ -10,6 +11,7 @@ export default function App() {
   return (
     <div className="relative min-h-dvh overflow-hidden text-white">
       <BackgroundFX />
+      <CodeOverlay />
       <main className="relative mx-auto max-w-6xl px-6 md:px-8 pt-8 md:pt-12 pb-16">
         <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_10px_50px_-10px_rgba(0,0,0,0.5)]">
           {/* subtle gradient border glow */}
