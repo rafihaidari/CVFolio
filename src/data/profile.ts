@@ -50,7 +50,7 @@ export type Profile = {
 
 export const profile: Profile = {
   name: 'Rafi Haidari',
-  headline: 'Software Engineer • Frontend Developer • Technical Team Lead',
+  headline: 'Software Engineer • Full Stack Developer • Technical Team Lead',
   location: 'Magdeburg, Germany',
   about:
     "Full‑stack developer with 12+ years in web engineering. I specialize in JavaScript, TypeScript, React, Vue and Node, with experience across OAuth2, DevOps and cloud. I love building responsive UIs, integrating third‑party tools and leading teams to deliver polished products.",

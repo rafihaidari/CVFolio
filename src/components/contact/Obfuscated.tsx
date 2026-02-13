@@ -1,8 +1,10 @@
+import { ReactNode } from 'react'
+
 type EmailProps = {
   user: string
   domain: string
   className?: string
-  label?: string
+  label?: ReactNode
 }
 
 export function ObfuscatedEmail({ user, domain, className, label = 'Email' }: EmailProps) {
@@ -12,7 +14,7 @@ export function ObfuscatedEmail({ user, domain, className, label = 'Email' }: Em
     window.location.href = `mailto:${addr}`
   }
   return (
-    <button type="button" onClick={handleClick} className={className} aria-label={`Email ${user}`}> 
+    <button type="button" onClick={handleClick} className={className} aria-label={`Email ${user}`}>
       {label || masked}
     </button>
   )
@@ -21,7 +23,7 @@ export function ObfuscatedEmail({ user, domain, className, label = 'Email' }: Em
 type PhoneProps = {
   parts: string[]
   className?: string
-  label?: string
+  label?: ReactNode
 }
 
 export function ObfuscatedPhone({ parts, className, label = 'Call' }: PhoneProps) {
