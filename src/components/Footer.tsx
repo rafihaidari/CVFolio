@@ -6,18 +6,6 @@ export default function Footer() {
       <p>
         © {new Date().getFullYear()} Rafi Haidari — Crafted with React, Vite and Tailwind
       </p>
-      <p className="mt-2">
-        Open source on{' '}
-        <a
-          href="https://github.com/rafihaidari/CVFolio"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1 text-slate-700 dark:text-white/80 hover:underline"
-        >
-          <FaGithub className="text-xs" />
-          GitHub
-        </a>
-      </p>
     </footer>
   )
 }

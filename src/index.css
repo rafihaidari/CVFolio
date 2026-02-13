@@ -23,6 +23,15 @@ body,
   body {
     @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white antialiased transition-colors duration-300;
   }
+
+  @media (pointer: fine) {
+
+    body,
+    a,
+    button {
+      cursor: none !important;
+    }
+  }
 }
 
 @layer utilities {
