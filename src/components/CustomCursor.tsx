@@ -10,7 +10,7 @@ interface Particle {
     life: number
 }
 
-const CODE_CHARS = ['{', '}', '</>', '=>', ';', '(', ')', '[]', '&&', '||', '!=']
+const CODE_CHARS = ['<js>', '<ts>', '<py>', '<html', '<css>', '<react>', '<next>', '<node>', '<db>', '<git>', '{', '}', '</>', '=>', ';', '(', ')', '[]', '&&', '||', '!=']
 const COLORS = ['#818cf8', '#38bdf8', '#10b981', '#f472b6', '#fbbf24']
 
 export default function CustomCursor() {

@@ -1,6 +1,8 @@
-import { profile, Experience } from '../../data/profile'
 import { useEffect, useRef, useState } from 'react'
 import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
+import { StaggerContainer, StaggerItem, FadeIn } from '../animations/Motion'
+import { Experience, profile } from '../../data/profile'
 
 interface ExperienceCardProps {
   exp: Experience
@@ -13,11 +15,10 @@ function ExperienceCard({ exp, idx, showAll, itemsCount }: ExperienceCardProps) 
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <article
-      key={`${exp.company}-${exp.role}`}
+    <StaggerItem
       className={
-        "relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/5 p-5 backdrop-blur-sm transition-opacity duration-300 " +
-        (!showAll && idx === itemsCount - 1 ? "opacity-75" : "opacity-100")
+        "relative group overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/5 p-5 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 " +
+        (!showAll && idx === itemsCount - 1 ? "opacity-75 blur-[1px]" : "opacity-100")
       }
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -78,7 +79,7 @@ function ExperienceCard({ exp, idx, showAll, itemsCount }: ExperienceCardProps) 
           </div>
         </div>
       )}
-    </article>
+    </StaggerItem>
   )
 }
 
@@ -92,22 +93,33 @@ export default function ExperienceSection() {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const innerRef = useRef<HTMLDivElement | null>(null)
 
-  // Update container height when toggling
+  // Update container height when toggling or content changes (like expanding a card)
   useEffect(() => {
     if (!containerRef.current || !innerRef.current) return
 
     const updateHeight = () => {
-      if (innerRef.current) {
-        containerRef.current!.style.maxHeight = `${innerRef.current.scrollHeight}px`
+      if (innerRef.current && containerRef.current) {
+        containerRef.current.style.maxHeight = `${innerRef.current.scrollHeight}px`
       }
     }
 
-    // Small delay to allow DOM to update
-    setTimeout(updateHeight, 0)
+    // Use ResizeObserver to catch height changes from expanding cards
+    const resizeObserver = new ResizeObserver(() => {
+      updateHeight()
+    })
+
+    resizeObserver.observe(innerRef.current)
+
+    // Initial update
+    updateHeight()
 
     const onResize = () => updateHeight()
     window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', onResize)
+    }
   }, [showAll, items.length])
 
   return (
@@ -121,7 +133,7 @@ export default function ExperienceSection() {
             (!showAll ? "[mask-image:linear-gradient(to_bottom,black,black,transparent)]" : "[mask-image:none]")
           }
         >
-          <div ref={innerRef} className="grid gap-4">
+          <div ref={innerRef} className="grid gap-4 pb-4">
             {items.map((exp, idx) => (
               <ExperienceCard
                 key={`${exp.company}-${exp.role}`}
