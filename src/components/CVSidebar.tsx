@@ -46,7 +46,7 @@ export default function CVSidebar() {
           {/* Scrollable content */}
           <div className="min-h-0 flex-1 overflow-y-auto divide-y divide-slate-100 dark:divide-white/10">
             {/* Contact */}
-            <section className="p-5">
+            <section className="p-2.5">
               <h3 className="text-xs uppercase tracking-wider text-slate-400 dark:text-white/50">Contact</h3>
               <ul className="mt-3 space-y-2 text-sm text-slate-600 dark:text-white/80">
                 {contact?.phoneParts && (

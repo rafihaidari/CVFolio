@@ -19,7 +19,7 @@ export default function App() {
           {/* subtle gradient border glow */}
           <div className="pointer-events-none absolute -inset-px rounded-3xl opacity-30" style={{ background: 'linear-gradient(135deg, rgba(129,140,248,0.35), rgba(56,189,248,0.25), rgba(16,185,129,0.25))' }} />
 
-          <div className="relative grid gap-8 md:grid-cols-[280px,1fr] p-6 md:p-10">
+          <div className="relative grid gap-8 md:grid-cols-[280px,1fr] p-6 md:p-10 md:px-7">
             <CVSidebar />
             <div>
               <Hero />
