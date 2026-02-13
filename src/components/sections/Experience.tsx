@@ -1,5 +1,6 @@
 import { profile, Experience } from '../../data/profile'
 import { useEffect, useRef, useState } from 'react'
+import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa'
 
 interface ExperienceCardProps {
   exp: Experience
@@ -20,10 +21,24 @@ function ExperienceCard({ exp, idx, showAll, itemsCount }: ExperienceCardProps) 
       }
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h3 className="text-white font-semibold">{exp.role}</h3>
-        <span className="text-xs text-white/60">{exp.period}</span>
+        <h3 className="text-white font-semibold flex items-center gap-2">
+          <FaBriefcase className="text-sky-400 text-xs" />
+          {exp.role}
+        </h3>
+        <span className="text-xs text-white/60 flex items-center gap-1.5">
+          <FaCalendarAlt className="text-white/40" />
+          {exp.period}
+        </span>
       </div>
-      <p className="mt-1 text-sm text-white/70">{exp.company}</p>
+      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
+        <p className="text-sm text-white/70 font-medium">{exp.company}</p>
+        {exp.location && (
+          <p className="text-xs text-white/50 flex items-center gap-1">
+            <FaMapMarkerAlt />
+            {exp.location}
+          </p>
+        )}
+      </div>
       <p className="mt-3 text-sm text-white/80">{exp.summary}</p>
 
       {exp.description && (

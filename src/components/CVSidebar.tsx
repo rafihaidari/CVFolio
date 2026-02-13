@@ -2,6 +2,14 @@ import avatarUrl from '../assets/images/Rafi-Haidari.jpeg'
 import { profile } from '../data/profile'
 import { ObfuscatedEmail, ObfuscatedPhone } from './contact/Obfuscated'
 import { useState } from 'react'
+import {
+  FaLinkedin,
+  FaGithub,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaExternalLinkAlt
+} from 'react-icons/fa'
 
 export default function CVSidebar() {
   const { links, skills, contact, languages, certifications } = profile
@@ -12,7 +20,7 @@ export default function CVSidebar() {
       <div className="h-full md:h-[calc(100vh-6rem)]">
         <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
           {/* Header */}
-          <div className="p-5">
+          <div className="p-3 border-b border-white/10">
             <div className="flex items-center gap-4">
               <div className="rounded-full p-[3px] bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400 shadow-glow">
                 <img
@@ -22,10 +30,14 @@ export default function CVSidebar() {
                   loading="eager"
                 />
               </div>
+
               <div>
                 <div className="text-sm font-semibold text-white/90">Software Engineer</div>
                 {contact?.location && (
-                  <div className="text-xs text-white/60">{contact.location}</div>
+                  <div className="flex items-center gap-1.5 text-xs text-white/60">
+                    <FaMapMarkerAlt className="text-sky-400" />
+                    <span>{contact.location}</span>
+                  </div>
                 )}
               </div>
             </div>
@@ -34,11 +46,12 @@ export default function CVSidebar() {
           {/* Scrollable content */}
           <div className="min-h-0 flex-1 overflow-y-auto divide-y divide-white/10">
             {/* Contact */}
-            <section className="p-5">
+            <section className="p-3">
               <h3 className="text-xs uppercase tracking-wider text-white/50">Contact</h3>
               <ul className="mt-3 space-y-2 text-sm text-white/80">
                 {contact?.phoneParts && (
-                  <li>
+                  <li className="flex items-center gap-2.5">
+                    <FaPhone className="text-sky-400/80 text-xs shrink-0" />
                     <ObfuscatedPhone
                       parts={contact.phoneParts}
                       className="hover:underline"
@@ -47,7 +60,8 @@ export default function CVSidebar() {
                   </li>
                 )}
                 {links.emailParts && (
-                  <li>
+                  <li className="flex items-center gap-2.5">
+                    <FaEnvelope className="text-sky-400/80 text-xs shrink-0" />
                     <ObfuscatedEmail
                       user={links.emailParts.user}
                       domain={links.emailParts.domain}
@@ -57,14 +71,16 @@ export default function CVSidebar() {
                   </li>
                 )}
                 {links.linkedin && (
-                  <li>
+                  <li className="flex items-center gap-2.5">
+                    <FaLinkedin className="text-sky-400/80 text-xs shrink-0" />
                     <a href={links.linkedin} target="_blank" rel="noreferrer" className="hover:underline">
                       LinkedIn
                     </a>
                   </li>
                 )}
                 {links.github && (
-                  <li>
+                  <li className="flex items-center gap-2.5">
+                    <FaGithub className="text-sky-400/80 text-xs shrink-0" />
                     <a href={links.github} target="_blank" rel="noreferrer" className="hover:underline">
                       GitHub
                     </a>
@@ -127,21 +143,10 @@ export default function CVSidebar() {
                               className="group flex items-center justify-between text-sm text-white/80 hover:text-white transition-colors"
                             >
                               <span>{item.name}</span>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="12"
-                                height="12"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="opacity-0 group-hover:opacity-100 transition-opacity"
-                              >
-                                <path d="M7 7h10v10" />
-                                <path d="M7 17 17 7" />
-                              </svg>
+                              <FaExternalLinkAlt
+                                size={10}
+                                className="opacity-0 group-hover:opacity-100 transition-opacity text-sky-400"
+                              />
                             </a>
                           </li>
                         ))}

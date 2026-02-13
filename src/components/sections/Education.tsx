@@ -1,4 +1,5 @@
 import { profile } from '../../data/profile'
+import { FaGraduationCap, FaUniversity, FaCalendarAlt } from 'react-icons/fa'
 
 export default function EducationSection() {
   const { education } = profile
@@ -14,10 +15,19 @@ export default function EducationSection() {
               className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-white font-semibold">{e.degree}</h3>
-                <span className="text-xs text-white/60">{e.period}</span>
+                <h3 className="text-white font-semibold flex items-center gap-2">
+                  <FaGraduationCap className="text-sky-400" />
+                  {e.degree}
+                </h3>
+                <span className="text-xs text-white/60 flex items-center gap-1.5">
+                  <FaCalendarAlt className="text-white/40" />
+                  {e.period}
+                </span>
               </div>
-              <p className="mt-1 text-sm text-white/70">{e.institution}</p>
+              <p className="mt-1 text-sm text-white/70 flex items-center gap-2">
+                <FaUniversity className="text-white/40 text-xs" />
+                {e.institution}
+              </p>
               {e.details && e.details.length > 0 && (
                 <ul className="mt-3 list-disc pl-5 space-y-1 text-sm text-white/80">
                   {e.details.map((d) => (

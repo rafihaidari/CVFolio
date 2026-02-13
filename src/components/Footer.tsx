@@ -1,3 +1,5 @@
+import { FaGithub } from 'react-icons/fa'
+
 export default function Footer() {
   return (
     <footer className="relative mt-24 border-t border-white/10 py-8 text-center text-xs text-white/60">
@@ -10,8 +12,9 @@ export default function Footer() {
           href="https://github.com/rafihaidari/CVFolio"
           target="_blank"
           rel="noreferrer"
-          className="text-white/80 hover:underline"
+          className="inline-flex items-center gap-1 text-white/80 hover:underline"
         >
+          <FaGithub className="text-xs" />
           GitHub
         </a>
       </p>
