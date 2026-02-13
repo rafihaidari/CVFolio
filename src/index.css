@@ -7,7 +7,9 @@
   color-scheme: light dark;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -19,7 +21,7 @@ html, body, #root {
 /* Typography & defaults */
 @layer base {
   body {
-    @apply bg-slate-950 text-white antialiased;
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white antialiased transition-colors duration-300;
   }
 }
 
@@ -27,11 +29,9 @@ html, body, #root {
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 }
-
-
-

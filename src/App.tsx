@@ -6,11 +6,13 @@ import ExperienceSection from './components/sections/Experience'
 import ContactSection from './components/sections/Contact'
 import CVSidebar from './components/CVSidebar'
 import EducationSection from './components/sections/Education'
+import ThemeToggle from './components/ThemeToggle'
 
 export default function App() {
   return (
-    <div className="relative min-h-dvh overflow-hidden text-white">
+    <div className="relative min-h-dvh overflow-hidden text-white dark:text-white text-slate-900 transition-colors duration-300">
       <BackgroundFX />
+      <ThemeToggle />
       <CodeOverlay />
       <main className="relative mx-auto max-w-6xl px-6 md:px-8 pt-8 md:pt-12 pb-16">
         <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_10px_50px_-10px_rgba(0,0,0,0.5)] min-h-[calc(100vh-6rem)]">

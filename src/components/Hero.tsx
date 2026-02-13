@@ -7,15 +7,15 @@ export default function Hero() {
         {/* Header */}
         <div className="mt-6">
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-            <span className="bg-gradient-to-r from-indigo-300 via-sky-300 to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-600 via-sky-600 to-emerald-600 dark:from-indigo-300 dark:via-sky-300 dark:to-emerald-300 bg-clip-text text-transparent">
               {profile.name}
             </span>
           </h1>
-          <p className="mt-2 text-lg md:text-xl text-white/80">{profile.headline}</p>
+          <p className="mt-2 text-lg md:text-xl text-slate-700 dark:text-white/80">{profile.headline}</p>
           {profile.location && (
-            <p className="mt-1 text-sm text-white/60">{profile.location}</p>
+            <p className="mt-1 text-sm text-slate-500 dark:text-white/60">{profile.location}</p>
           )}
-          <p className="mt-4 max-w-2xl text-base md:text-lg text-white/70">{profile.about}</p>
+          <p className="mt-4 max-w-2xl text-base md:text-lg text-slate-600 dark:text-white/70">{profile.about}</p>
         </div>
 
         {/* CV header does not include marketing cards */}
