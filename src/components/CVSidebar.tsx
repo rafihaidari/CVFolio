@@ -67,7 +67,7 @@ export default function CVSidebar() {
                       user={links.emailParts.user}
                       domain={links.emailParts.domain}
                       className="hover:underline"
-                      label={`${links.emailParts.user} [at] ${links.emailParts.domain.replace(/\./g, ' [dot] ')}`}
+                      label={`${links.emailParts.user}@${links.emailParts.domain}`}
                     />
                   </li>
                 )}

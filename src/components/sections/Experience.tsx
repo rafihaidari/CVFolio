@@ -123,7 +123,7 @@ export default function ExperienceSection() {
   }, [showAll, items.length])
 
   return (
-    <section id="experience" className="relative py-16">
+    <section id="experience" className="relative py-10 border-b border-slate-200 dark:border-white/10">
       <div className="mx-auto max-w-5xl">
         <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Experience</h2>
         <div
