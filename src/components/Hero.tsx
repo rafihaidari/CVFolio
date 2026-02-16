@@ -2,27 +2,42 @@ import { profile } from '../data/profile'
 import logoUrl from '../assets/images/rafi-logo.svg'
 import { motion } from 'framer-motion'
 import { RevealMask } from './animations/Motion'
+import { useEffect, useState } from 'react'
 
 export default function Hero() {
   const headlineWords = profile.headline.split(' ')
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   return (
     <section className="relative">
       <div className="mx-auto max-w-5xl px-6 md:px-10">
         {/* Header */}
         <div className="mt-6 flex flex-col items-start gap-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="group relative"
-          >
-            <div className="absolute -inset-2 rounded-xl bg-gradient-to-r from-indigo-500/20 via-sky-500/20 to-emerald-500/20 opacity-0 blur-xl transition-opacity group-hover:opacity-100" />
-          </motion.div>
+          {!isMobile ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="group relative"
+            >
+              <div className="absolute -inset-2 rounded-xl bg-gradient-to-r from-indigo-500/20 via-sky-500/20 to-emerald-500/20 opacity-0 blur-xl transition-opacity group-hover:opacity-100" />
+            </motion.div>
+          ) : (
+            <div className="group relative">
+              <div className="absolute -inset-2 rounded-xl bg-gradient-to-r from-indigo-500/20 via-sky-500/20 to-emerald-500/20 opacity-0 blur-xl transition-opacity group-hover:opacity-100" />
+            </div>
+          )}
           <div>
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight flex items-center gap-2">
               <motion.img
-                initial={{ x: -20, opacity: 0 }}
+                initial={isMobile ? { opacity: 0.5 } : { x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 0.5 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
                 src={logoUrl}
@@ -30,7 +45,7 @@ export default function Hero() {
                 className="relative h-12 w-auto object-contain dark:brightness-110 mr-2 ov"
               />
               <motion.div
-                initial={{ height: 0 }}
+                initial={isMobile ? { height: 44 } : { height: 0 }}
                 animate={{ height: 44 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
                 className="h-11 w-1 bg-gradient-to-t from-indigo-600 via-sky-600 to-emerald-600 dark:from-indigo-300 dark:via-sky-300 dark:to-emerald-300 rounded-full"
@@ -45,7 +60,7 @@ export default function Hero() {
               {headlineWords.map((word, i) => (
                 <motion.span
                   key={i}
-                  initial={{ opacity: 0 }}
+                  initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1 + i * 0.1, duration: 0.2 }}
                 >
@@ -59,7 +74,7 @@ export default function Hero() {
               />
             </div>
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.6 }}
               className="mt-4 max-w-2xl text-base md:text-lg text-slate-600 dark:text-white/70"
