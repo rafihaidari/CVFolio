@@ -1,5 +1,6 @@
 import avatarUrl from '../assets/images/Rafi-Haidari.jpeg'
 import { profile } from '../data/profile'
+import { FadeIn, StaggerContainer, StaggerItem } from './animations/Motion'
 import { ObfuscatedEmail, ObfuscatedPhone } from './contact/Obfuscated'
 import { useState } from 'react'
 import {
@@ -17,8 +18,8 @@ export default function CVSidebar() {
 
   return (
     <aside className="relative md:sticky md:top-8 self-start">
-      <div className="h-full md:h-[calc(100vh-6rem)]">
-        <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-sm">
+      <FadeIn className="h-full md:h-[calc(100vh-6rem)]">
+        <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-sm shadow-xl">
           {/* Header */}
           <div className="p-3 border-b border-white/10">
             <div className="flex items-center gap-4">
@@ -44,9 +45,9 @@ export default function CVSidebar() {
           </div>
 
           {/* Scrollable content */}
-          <div className="min-h-0 flex-1 overflow-y-auto divide-y divide-slate-100 dark:divide-white/10">
+          <StaggerContainer className="min-h-0 flex-1 overflow-y-auto divide-y divide-slate-100 dark:divide-white/10">
             {/* Contact */}
-            <section className="p-2.5">
+            <StaggerItem className="p-2.5">
               <h3 className="text-xs uppercase tracking-wider text-slate-400 dark:text-white/50">Contact</h3>
               <ul className="mt-3 space-y-2 text-sm text-slate-600 dark:text-white/80">
                 {contact?.phoneParts && (
@@ -66,7 +67,7 @@ export default function CVSidebar() {
                       user={links.emailParts.user}
                       domain={links.emailParts.domain}
                       className="hover:underline"
-                      label={`${links.emailParts.user} [at] ${links.emailParts.domain.replace(/\./g, ' [dot] ')}`}
+                      label={`${links.emailParts.user}@${links.emailParts.domain}`}
                     />
                   </li>
                 )}
@@ -87,10 +88,10 @@ export default function CVSidebar() {
                   </li>
                 )}
               </ul>
-            </section>
+            </StaggerItem >
 
             {/* Skills */}
-            <section className="p-5">
+            <StaggerItem className="p-5">
               <h3 className="text-xs uppercase tracking-wider text-slate-400 dark:text-white/50">Skills</h3>
               <div
                 className={
@@ -121,11 +122,11 @@ export default function CVSidebar() {
                   {showAllSkills ? "Show less" : "Show more"}
                 </button>
               </div>
-            </section>
+            </StaggerItem>
 
             {/* Projects */}
             {profile.projects && profile.projects.length > 0 && (
-              <section className="p-5">
+              <StaggerItem className="p-5">
                 <h3 className="text-xs uppercase tracking-wider text-slate-400 dark:text-white/50">Projects</h3>
                 <div className="mt-3 space-y-4">
                   {profile.projects.map((category) => (
@@ -154,35 +155,38 @@ export default function CVSidebar() {
                     </div>
                   ))}
                 </div>
-              </section>
+              </StaggerItem>
             )}
 
             {/* Languages */}
             {languages && languages.length > 0 && (
-              <section className="p-5">
+              <StaggerItem className="p-5">
                 <h3 className="text-xs uppercase tracking-wider text-slate-400 dark:text-white/50">Languages</h3>
                 <ul className="mt-3 space-y-1 text-sm text-slate-600 dark:text-white/80">
                   {languages.map((l) => (
-                    <li key={l}>{l}</li>
+                    <li key={l} className="flex items-center gap-2">
+                      <div className="w-1 h-1 rounded-full bg-indigo-500 dark:bg-sky-400" />
+                      {l}
+                    </li>
                   ))}
                 </ul>
-              </section>
+              </StaggerItem>
             )}
 
             {/* Certifications */}
             {certifications && certifications.length > 0 && (
-              <section className="p-5">
+              <StaggerItem className="p-5">
                 <h3 className="text-xs uppercase tracking-wider text-slate-400 dark:text-white/50">Certifications</h3>
                 <ul className="mt-3 list-disc pl-5 space-y-1 text-sm text-slate-600 dark:text-white/80">
                   {certifications.map((c) => (
                     <li key={c}>{c}</li>
                   ))}
                 </ul>
-              </section>
+              </StaggerItem>
             )}
-          </div>
+          </StaggerContainer>
         </div>
-      </div>
+      </FadeIn>
     </aside>
   )
 }

@@ -144,7 +144,7 @@ export const profile: Profile = {
     linkedin: 'https://www.linkedin.com/in/rafi-haidari/',
     github: 'https://github.com/rafihaidari',
     email: undefined,
-    emailParts: { user: 'hello.rafihaidari', domain: 'gmail.com' },
+    emailParts: { user: 'rafi', domain: 'haidari.co' },
   },
   contact: {
     phone: undefined,
@@ -152,7 +152,7 @@ export const profile: Profile = {
     location: 'Magdeburg, Germany',
     address: 'Hermann-Hesse-Str 16, Magdeburg, Germany',
   },
-  languages: ['English (C1)', 'German (A1)', 'Persian (Native)'],
+  languages: ['English (C1)', 'German (A2)', 'Persian (Native)'],
   certifications: [
     'Google Analytics (Google)',
     'Google Tag Manager (Google)',
