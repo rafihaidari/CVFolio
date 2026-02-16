@@ -61,7 +61,7 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2, duration: 0.6 }}
+              transition={{ delay: 1, duration: 0.6 }}
               className="mt-4 max-w-2xl text-base md:text-lg text-slate-600 dark:text-white/70"
             >
               {profile.about}

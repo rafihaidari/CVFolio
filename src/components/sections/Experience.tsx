@@ -128,10 +128,7 @@ export default function ExperienceSection() {
         <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Experience</h2>
         <div
           ref={containerRef}
-          className={
-            "relative mt-8 overflow-hidden transition-[max-height] duration-500 ease-in-out " +
-            (!showAll ? "[mask-image:linear-gradient(to_bottom,black,black,transparent)]" : "[mask-image:none]")
-          }
+          className="relative mt-8 overflow-hidden transition-[max-height] duration-500 ease-in-out"
         >
           <div ref={innerRef} className="grid gap-4 pb-4">
             {items.map((exp, idx) => (
@@ -144,6 +141,15 @@ export default function ExperienceSection() {
               />
             ))}
           </div>
+
+          {/* Minimal code-style indicator for truncated list */}
+          {!showAll && (
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center pb-2">
+              <div className="rounded-full bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-3 py-1 text-[10px] font-mono text-slate-500 dark:text-white/40 animate-pulse backdrop-blur-sm">
+                // {all.length - previewCount} more entries
+              </div>
+            </div>
+          )}
         </div>
         <div className="mt-6">
           <button

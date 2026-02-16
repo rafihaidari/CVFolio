@@ -35,6 +35,7 @@ export default {
         float: 'float 6s ease-in-out infinite',
         blob: 'blob 12s ease-in-out infinite',
         'gradient-x': 'gradient-x 14s ease infinite',
+        'gradient-half': 'gradient-x 10s ease infinite',
         twinkle: 'twinkle 3s ease-in-out infinite',
         marquee: 'marquee 22s linear infinite',
         'marquee-slow': 'marquee 36s linear infinite',
