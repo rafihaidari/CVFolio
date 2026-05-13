@@ -32,6 +32,48 @@ body,
       cursor: none !important;
     }
   }
+
+  /* Fancy Glassy Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom,
+        theme('colors.indigo.500 / 20%'),
+        theme('colors.sky.500 / 20%'),
+        theme('colors.emerald.500 / 20%'));
+    border-radius: 9999px;
+    border: 1px solid theme('colors.white / 10%');
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom,
+        theme('colors.indigo.400 / 30%'),
+        theme('colors.sky.400 / 30%'),
+        theme('colors.emerald.400 / 30%'));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom,
+        theme('colors.indigo.500 / 60%'),
+        theme('colors.sky.500 / 60%'),
+        theme('colors.emerald.500 / 60%'));
+    border: 1px solid theme('colors.white / 20%');
+  }
+
+  /* Support for Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.indigo.500 / 30%') transparent;
+  }
 }
 
 @layer utilities {
