@@ -79,15 +79,3 @@ body,
     scrollbar-width: none;
   }
 }
-
-/* Force cal.com iframe to always render in light mode */
-iframe[src*="cal.com"] {
-  color-scheme: light !important;
-  background: white !important;
-}
-/* Ensure Cal.com embed always uses light colors */
-.cal-embed, .cal-embed * {
-  background: white !important;
-  color: #000 !important;
-  color-scheme: light !important;
-}
