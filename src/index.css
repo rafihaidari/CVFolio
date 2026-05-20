@@ -21,16 +21,51 @@ body,
 /* Typography & defaults */
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white antialiased transition-colors duration-300;
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white antialiased transition-colors duration-300 overflow-x-clip;
   }
 
-  @media (pointer: fine) {
 
-    body,
-    a,
-    button {
-      cursor: none !important;
-    }
+
+  /* Fancy Glassy Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom,
+        theme('colors.indigo.500 / 20%'),
+        theme('colors.sky.500 / 20%'),
+        theme('colors.emerald.500 / 20%'));
+    border-radius: 9999px;
+    border: 1px solid theme('colors.white / 10%');
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom,
+        theme('colors.indigo.400 / 30%'),
+        theme('colors.sky.400 / 30%'),
+        theme('colors.emerald.400 / 30%'));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom,
+        theme('colors.indigo.500 / 60%'),
+        theme('colors.sky.500 / 60%'),
+        theme('colors.emerald.500 / 60%'));
+    border: 1px solid theme('colors.white / 20%');
+  }
+
+  /* Support for Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.indigo.500 / 30%') transparent;
   }
 }
 
@@ -43,4 +78,16 @@ body,
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+/* Force cal.com iframe to always render in light mode */
+iframe[src*="cal.com"] {
+  color-scheme: light !important;
+  background: white !important;
+}
+/* Ensure Cal.com embed always uses light colors */
+.cal-embed, .cal-embed * {
+  background: white !important;
+  color: #000 !important;
+  color-scheme: light !important;
 }

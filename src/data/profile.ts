@@ -46,6 +46,9 @@ export type Profile = {
     details?: string[]
   }>
   projects?: ProjectCategory[]
+  scheduler?: {
+    link: string
+  }
 }
 
 export const profile: Profile = {
@@ -199,7 +202,10 @@ export const profile: Profile = {
         { name: 'CVFolio', link: 'https://github.com/rafihaidari/CVFolio' }
       ]
     }
-  ]
+  ],
+  scheduler: {
+    link: import.meta.env.VITE_CALCOM_LINK || 'rafi-haidari/30min'
+  }
 }
 
 
