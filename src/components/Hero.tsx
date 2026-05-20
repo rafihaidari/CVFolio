@@ -3,10 +3,13 @@ import logoUrl from '../assets/images/rafi-logo.svg'
 import { motion } from 'framer-motion'
 import { RevealMask } from './animations/Motion'
 import { useEffect, useState } from 'react'
+import SchedulerModal from './SchedulerModal'
+import { FaCalendarPlus } from 'react-icons/fa'
 
 export default function Hero() {
   const headlineWords = profile.headline.split(' ')
   const [isMobile, setIsMobile] = useState(false)
+  const [isSchedulerOpen, setIsSchedulerOpen] = useState(false)
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -81,9 +84,32 @@ export default function Hero() {
             >
               {profile.about}
             </motion.p>
+            
+            <motion.div
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.6 }}
+              className="mt-8 flex flex-wrap gap-4"
+            >
+              <button
+                onClick={() => setIsSchedulerOpen(true)}
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-indigo-600 via-sky-600 to-emerald-600 px-6 py-3 text-sm font-bold text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-indigo-500/25 active:scale-95"
+              >
+                <div className="absolute inset-0 bg-white/10 opacity-0 transition-opacity group-hover:opacity-100" />
+                <FaCalendarPlus className="text-lg" />
+                <span>Book a Session</span>
+              </button>
+              
+
+            </motion.div>
           </div>
         </div>
       </div>
+      
+      <SchedulerModal 
+        isOpen={isSchedulerOpen} 
+        onClose={() => setIsSchedulerOpen(false)} 
+      />
     </section>
   )
 }

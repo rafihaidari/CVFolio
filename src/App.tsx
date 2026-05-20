@@ -11,7 +11,7 @@ import CustomCursor from './components/CustomCursor'
 
 export default function App() {
   return (
-    <div className="relative min-h-dvh overflow-hidden text-white dark:text-white text-slate-900 transition-colors duration-300">
+    <div className="relative min-h-dvh text-white dark:text-white text-slate-900 transition-colors duration-300">
       <CustomCursor />
       <BackgroundFX />
       <ThemeToggle />

@@ -21,17 +21,10 @@ body,
 /* Typography & defaults */
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white antialiased transition-colors duration-300;
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white antialiased transition-colors duration-300 overflow-x-clip;
   }
 
-  @media (pointer: fine) {
 
-    body,
-    a,
-    button {
-      cursor: none !important;
-    }
-  }
 
   /* Fancy Glassy Scrollbar */
   ::-webkit-scrollbar {
@@ -85,4 +78,16 @@ body,
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+/* Force cal.com iframe to always render in light mode */
+iframe[src*="cal.com"] {
+  color-scheme: light !important;
+  background: white !important;
+}
+/* Ensure Cal.com embed always uses light colors */
+.cal-embed, .cal-embed * {
+  background: white !important;
+  color: #000 !important;
+  color-scheme: light !important;
 }

@@ -9,12 +9,15 @@ import {
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
-  FaExternalLinkAlt
+  FaExternalLinkAlt,
+  FaCalendarCheck
 } from 'react-icons/fa'
+import SchedulerModal from './SchedulerModal'
 
 export default function CVSidebar() {
   const { links, skills, contact, languages, certifications } = profile
   const [showAllSkills, setShowAllSkills] = useState(false)
+  const [isSchedulerOpen, setIsSchedulerOpen] = useState(false)
 
   return (
     <aside className="relative md:sticky md:top-8 self-start">
@@ -87,6 +90,7 @@ export default function CVSidebar() {
                     </a>
                   </li>
                 )}
+
               </ul>
             </StaggerItem >
 
@@ -187,6 +191,11 @@ export default function CVSidebar() {
           </StaggerContainer>
         </div>
       </FadeIn>
+      
+      <SchedulerModal 
+        isOpen={isSchedulerOpen} 
+        onClose={() => setIsSchedulerOpen(false)} 
+      />
     </aside>
   )
 }
