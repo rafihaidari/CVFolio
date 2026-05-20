@@ -59,6 +59,7 @@ export default function BookingPage() {
   // Booking Form Modal State
   const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null)
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
+  const [pendingSlotStart, setPendingSlotStart] = useState<string | null>(null)
   const [bookingName, setBookingName] = useState('')
   const [bookingEmail, setBookingEmail] = useState('')
   const [bookingNotes, setBookingNotes] = useState('')
@@ -613,13 +614,32 @@ export default function BookingPage() {
                           return (
                             <button
                               key={index}
+                              disabled={pendingSlotStart === slot.start}
                               onClick={() => {
-                                setSelectedSlot(slot)
-                                setIsBookingModalOpen(true)
+                                setPendingSlotStart(slot.start)
+                                // Small defer so the disabled/spinner state renders first
+                                setTimeout(() => {
+                                  setSelectedSlot(slot)
+                                  setIsBookingModalOpen(true)
+                                  setPendingSlotStart(null)
+                                }, 80)
                               }}
-                              className="rounded-xl border border-slate-200 dark:border-white/10 bg-white/60 dark:bg-white/5 py-3 px-4 text-xs md:text-sm font-bold text-center text-slate-700 dark:text-white/90 hover:border-indigo-500 dark:hover:border-sky-400 hover:bg-indigo-500/5 dark:hover:bg-sky-500/5 active:scale-[0.98] transition-all cursor-pointer shadow-sm hover:shadow"
+                              className={`rounded-xl border py-3 px-4 text-xs md:text-sm font-bold text-center transition-all shadow-sm flex items-center justify-center gap-2
+                                ${
+                                  pendingSlotStart === slot.start
+                                    ? 'border-indigo-500/50 dark:border-sky-500/50 bg-indigo-500/10 dark:bg-sky-500/10 text-indigo-500 dark:text-sky-400 cursor-wait opacity-80'
+                                    : 'border-slate-200 dark:border-white/10 bg-white/60 dark:bg-white/5 text-slate-700 dark:text-white/90 hover:border-indigo-500 dark:hover:border-sky-400 hover:bg-indigo-500/5 dark:hover:bg-sky-500/5 active:scale-[0.98] cursor-pointer hover:shadow'
+                                }
+                              `}
                             >
-                              {formattedTime}
+                              {pendingSlotStart === slot.start ? (
+                                <>
+                                  <FaSpinner className="animate-spin shrink-0" size={12} />
+                                  <span>{formattedTime}</span>
+                                </>
+                              ) : (
+                                formattedTime
+                              )}
                             </button>
                           )
                         })}
@@ -652,10 +672,10 @@ export default function BookingPage() {
             {/* Modal Body Container */}
             <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 overflow-y-auto">
               <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 15 }}
-                transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
                 className="relative w-full max-w-md overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#121212]/95 backdrop-blur-xl shadow-2xl p-6 text-slate-900 dark:text-white"
               >
                 {/* Header detail */}
