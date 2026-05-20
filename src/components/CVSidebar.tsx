@@ -12,12 +12,10 @@ import {
   FaExternalLinkAlt,
   FaCalendarCheck
 } from 'react-icons/fa'
-import SchedulerModal from './SchedulerModal'
 
 export default function CVSidebar() {
   const { links, skills, contact, languages, certifications } = profile
   const [showAllSkills, setShowAllSkills] = useState(false)
-  const [isSchedulerOpen, setIsSchedulerOpen] = useState(false)
 
   return (
     <aside className="relative md:sticky md:top-8 self-start">
@@ -87,6 +85,17 @@ export default function CVSidebar() {
                     <FaGithub className="text-indigo-500 dark:text-sky-400/80 text-xs shrink-0" />
                     <a href={links.github} target="_blank" rel="noreferrer" className="hover:underline">
                       GitHub
+                    </a>
+                  </li>
+                )}
+                {profile.scheduler?.link && (
+                  <li className="flex items-center gap-2.5 pt-2 border-t border-slate-100 dark:border-white/5 mt-2">
+                    <a
+                      href="/book"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 py-2 px-3 text-xs font-bold text-white shadow-md dark:shadow-glow hover:scale-[1.02] transition-all"
+                    >
+                      <FaCalendarCheck size={12} className="shrink-0" />
+                      <span>Book a Session</span>
                     </a>
                   </li>
                 )}
@@ -191,11 +200,6 @@ export default function CVSidebar() {
           </StaggerContainer>
         </div>
       </FadeIn>
-      
-      <SchedulerModal 
-        isOpen={isSchedulerOpen} 
-        onClose={() => setIsSchedulerOpen(false)} 
-      />
     </aside>
   )
 }

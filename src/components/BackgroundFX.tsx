@@ -25,13 +25,15 @@ export default function BackgroundFX() {
       {/* Vignette */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02),_transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.08),_transparent_70%)]" />
 
-      {/* Gradient blobs - using transform for better performance than top/left */}
-      <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-tr from-indigo-500/20 via-sky-400/20 to-emerald-400/20 dark:from-indigo-500/30 dark:via-sky-400/30 dark:to-emerald-400/30 blur-3xl animate-blob will-change-transform mix-blend-multiply dark:mix-blend-screen" />
-      <div className="absolute top-40 -right-24 h-72 w-72 rounded-full bg-gradient-to-tr from-pink-500/20 via-fuchsia-400/20 to-indigo-400/20 dark:from-pink-500/30 dark:via-fuchsia-400/30 dark:to-indigo-400/30 blur-3xl animate-blob [animation-delay:2s] will-change-transform mix-blend-multiply dark:mix-blend-screen" />
-      <div className="absolute bottom-[-60px] left-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-amber-400/20 via-rose-400/20 to-purple-400/20 dark:from-amber-400/30 dark:via-rose-400/30 dark:to-purple-400/30 blur-3xl animate-blob [animation-delay:4s] will-change-transform mix-blend-multiply dark:mix-blend-screen" />
+      {/* Gradient blobs - hidden on mobile for GPU performance, visible on desktop */}
+      <div className="hidden md:block absolute -top-24 -left-24 h-80 w-80 rounded-full bg-gradient-to-tr from-indigo-500/20 via-sky-400/20 to-emerald-400/20 dark:from-indigo-500/30 dark:via-sky-400/30 dark:to-emerald-400/30 blur-3xl animate-blob will-change-transform mix-blend-multiply dark:mix-blend-screen" />
+      <div className="hidden md:block absolute top-40 -right-24 h-72 w-72 rounded-full bg-gradient-to-tr from-pink-500/20 via-fuchsia-400/20 to-indigo-400/20 dark:from-pink-500/30 dark:via-fuchsia-400/30 dark:to-indigo-400/30 blur-3xl animate-blob [animation-delay:2s] will-change-transform mix-blend-multiply dark:mix-blend-screen" />
+      <div className="hidden md:block absolute bottom-[-60px] left-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-amber-400/20 via-rose-400/20 to-purple-400/20 dark:from-amber-400/30 dark:via-rose-400/30 dark:to-purple-400/30 blur-3xl animate-blob [animation-delay:4s] will-change-transform mix-blend-multiply dark:mix-blend-screen" />
 
-      {/* Stars / particles */}
-      <Stars />
+      {/* Stars / particles - hidden on mobile to prevent animation stutter */}
+      <div className="hidden md:block">
+        <Stars />
+      </div>
     </div>
   )
 }
